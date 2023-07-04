@@ -12,6 +12,7 @@ const initState = () => {
 
 const checkFibs = (rows: any) => {
   const fibs = [];
+  let score = 0;
   for(let rIndex = 0; rIndex < rows.length; rIndex++) {
     const row = rows[rIndex];
     for(let i = 0; i < row.length - 4; i++) {
@@ -25,16 +26,18 @@ const checkFibs = (rows: any) => {
         for(let j = i; j < i + 5; j++) {
           fibs.push(`${rIndex}_${j}`);
         }
+        score++;
       }
     }
   }
-  return fibs;
+  return { fibs, score };
 }
 
 export default function Home() {
   const [state, setState] = createStore(initState());
   const [fibs, setFibs] = createSignal([]);
   const [selected, setSelected] = createSignal({r: -1, c: -1});
+  const [score, setScore] = createSignal(0);
 
   const changeState = (rIndex: Number, cIndex: Number) => {
     setSelected({r: rIndex, c: cIndex});
@@ -47,7 +50,9 @@ export default function Home() {
       });
     });
     setState(newState);
-    setFibs(checkFibs(newState));
+    const checkResult = checkFibs(newState);
+    setFibs(checkResult.fibs);
+    setScore(score() + checkResult.score);
   };
 
   const init = () => {
@@ -79,6 +84,15 @@ export default function Home() {
         onClick={() => init()}
       >
         Restart
+      </button>
+      <button
+        class="w-[200px] ml-6 rounded-full bg-cyan-100 border-2 border-gray-300 focus:border-gray-400 active:border-gray-400 px-[2rem] py-[1rem]"
+        classList={{
+          [`bg-green-${Math.round(score() / 10)}00`]: score() > 10 && score() < 100,
+          [`bg-lime-${Math.round((score() - 100) / 10)}00`]: score() > 100 && score() < 200
+        }}
+      >
+        Score({score()})
       </button>
       <div class="grid grid-cols-50 gap-[2px] gap-y-[4px]">
         <For each={state} fallback={<div>Loading...</div>}>
