@@ -14,12 +14,12 @@ git clone https://github.com/haojin111/pixcelmatic.git
 cd pixelmatic
 
 # create a new project in the current directory
-npm install
+yarn install
 
 # create a new project in my-app
-npm run build
+yarn build
 
-npm run start
+yarn start
 ```
 
 ## Testing
@@ -27,5 +27,5 @@ npm run start
 Once you've installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a test script:
 
 ```bash
-npm run test
+yarn test
 ```
