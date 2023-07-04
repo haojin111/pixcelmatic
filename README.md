@@ -16,7 +16,7 @@ cd pixelmatic
 # create a new project in the current directory
 yarn install
 
-# create a new project in my-app
+# build
 yarn build
 
 yarn start
