@@ -12,7 +12,7 @@ export default function Cell(props) {
 
   return (
     <button
-      class="text-sm w-[18px] h-[18px] transition-all duration:1s timing_function rounded-2px bg-gray-100 border-1 border-gray-300 focus:border-gray-400 active:border-gray-400 hover:bg-amber-400"
+      class="cell text-sm w-[18px] h-[18px] transition-all duration:1s timing_function rounded-2px bg-gray-100 border-1 border-gray-300 focus:border-gray-400 active:border-gray-400 hover:bg-amber-400"
       classList={{["bg-amber-200"]: !!isSelected(), ["bg-green-600"]: !!local.isFib}}
       {...others}
       onClick={() => local.onClick()}

@@ -1,6 +1,6 @@
 import { For, createEffect, createSignal } from "solid-js";
 import { createStore } from "solid-js/store";
-import Cell from "~/components/Cell";
+import Cell from "../components/Cell";
 
 const initState = () => {
   const res = [];
@@ -33,7 +33,7 @@ const checkFibs = (rows: any) => {
   return { fibs, score };
 }
 
-export default function Home() {
+export default function Game() {
   const [state, setState] = createStore(initState());
   const [fibs, setFibs] = createSignal([]);
   const [selected, setSelected] = createSignal({r: -1, c: -1});
